@@ -23,7 +23,7 @@
             },
             methods: {
                 fetchPlayers() {
-                    fetch('/players.json')
+                    fetch('/api/players.json')
                         .then(response => response.json())
                         .then(data => {
                             this.players = data.players || [];
