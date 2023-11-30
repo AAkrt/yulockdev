@@ -6,21 +6,16 @@ on:
       - main
 
 jobs:
-  registerPlayer:
+  register_player:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Check Player Name
+      id: check_name
+      run: |
+        echo "Player Name: ${{ github.event.client_payload.nickname }}"
+        # Adicione aqui a lógica para verificar o nome do jogador e realizar a ação desejada
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-      - name: Register Player
-        run: |
-          pip install requests
-          python register_player.py
-        env:
-          NICKNAME: ${{ steps.extractNickname.outputs.nickname }}
+    - name: Print Result
+      run: |
+        echo "Result: ${{ steps.check_name.outputs.result }}"
